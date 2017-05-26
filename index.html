@@ -1,11 +1,181 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
-		<meta charset="utf-8" />
-		<title></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>CSS3 滤镜实现</title>
+		<!--<link href="css/20160110.css" rel="stylesheet" />-->
+		<style type="text/css">
+			.div_20160110 img {
+				max-width: 150px;
+				max-height: 150px;
+			}
+			
+			.sepia {
+				/**  格式，filer: sepia(效果范围)
+     *  效果范围，取值范围为0-1或0-100%；0表示无效果，1或100%表示最大效果
+     */
+				-webkit-filter: sepia(100%);
+				-moz-filter: sepia(100%);
+				-o-filter: sepia(100%);
+				-ms-filter: sepia(100%);
+				filter: sepia(100%);
+			}
+			
+			.grayscale {
+				/**  格式，filer: grayscale(效果范围)
+     *  效果范围，取值范围为0-1或0-100%；0表示无效果，1或100%表示最大效果
+     */
+				-webkit-filter: grayscale(100%);
+				-o-filter: grayscale(100%);
+				-moz-filter: grayscale(100%);
+				-ms-filter: grayscale(100%);
+				filter: grayscale(100%);
+			}
+			
+			.blur {
+				/**  格式，filer: blur(模糊半径)
+     *  模糊半径，取值范围0~Npx，0为无效果
+     */
+				-webkit-filter: blur(2px);
+				-moz-filter: blur(2px);
+				-o-filter: blur(2px);
+				-ms-filter: blur(2px);
+				filter: blur(2px);
+			}
+			
+			.invert {
+				/**  格式，filer: invert(效果范围)
+     *  效果范围，取值范围0~1或0~100%，0为无效果，1或100%表示最大效果
+     */
+				-webkit-filter: invert(1);
+				-moz-filter: invert(1);
+				-o-filter: invert(1);
+				-ms-filter: invert(1);
+				filter: invert(1);
+			}
+			
+			.saturate {
+				/**  格式，filer: saturate(效果范围)
+     *  效果范围，取值范围>=0的数字或百分数，1为无效果，0为灰度图
+     */
+				-webkit-filter: saturate(2);
+				-moz-filter: saturate(2);
+				-o-filter: saturate(2);
+				-ms-filter: saturate(2);
+				filter: saturate(2);
+			}
+			
+			.contrast {
+				/**  格式，filer: contrast(效果范围)
+     *  效果范围，取值范围>=0的数字或百分数，1为无效果
+     */
+				-webkit-filter: contrast(2);
+				-moz-filter: contrast(2);
+				-o-filter: contrast(2);
+				-ms-filter: contrast(2);
+				filter: contrast(2);
+			}
+			
+			.brightness {
+				/**  格式，filer: brightness(效果范围)
+     *  效果范围，取值范围>=0的数字或百分数，1为无效果
+     */
+				-webkit-filter: brightness(2);
+				-moz-filter: brightness(2);
+				-o-filter: brightness(2);
+				-ms-filter: brightness(2);
+				filter: brightness(2);
+			}
+			
+			.hue-rotate {
+				/**  格式，filer: hue-rotate(效果范围)
+     *  效果范围，取值范0deg~365deg，0（默认值）为无效果
+     */
+				-webkit-filter: hue-rotate(200deg);
+				-moz-filter: hue-rotate(200deg);
+				-o-filter: hue-rotate(200deg);
+				-ms-filter: hue-rotate(200deg);
+				filter: hue-rotate(200deg);
+			}
+			
+			.drop-shadow {
+				/**  格式，filer: drop-shadow(x-offset y-offset 阴影模糊半径 阴影颜色)
+     *  x-offset和y-offset为阴影的相对于元素左上角的位移距离；
+     * 注意：
+     *     1. 阴影的外观受border-radius样式的影响；
+     *     2. :after和:before等伪元素会继承阴影的效果。
+     */
+				-webkit-filter: drop-shadow(1px 1px 0px #333);
+				-moz-filter: drop-shadow(1px 1px 0px #333);
+				-o-filter: drop-shadow(1px 1px 0px #333);
+				-ms-filter: drop-shadow(1px 1px 0px #333);
+				filter: drop-shadow(1px 1px 0px #333);
+				/*圆角*/
+				border: solid 2px #e00;
+				-webkit-border-radius: 1px;
+			}
+			
+			.myElement {
+				filter: blur(2px) grayscale (.5) opacity(0.8);
+			}
+			/*自己添加*/
+			/*X照片*/
+			
+			.red {
+				-webkit-filter: grayscale(1) invert(1);
+			}
+			/*一般模糊*/
+			
+			.green {
+				-webkit-filter: blur(3px)
+			}
+			
+			.orange {
+				-webkit-filter: grayscale(100);
+			}
+			/*反色效果*/
+			
+			.one {
+				-webkit-filter: invert(1)
+			}
+			/*一般透明效果*/
+			
+			.two {
+				-webkit-filter: opacity(0.3);
+				或 opacity: 0.3;
+			}
+			
+			.three {
+				-webkit-filter: grayscale(1);
+			}
+		</style>
 	</head>
+
 	<body>
-		<h1>这是入口位置</h1>
-		<img src="img/horse.jpg"/>
+		<div style="display: table; text-align: center; width: 100%; height: 100%;">
+			<div style="display: table-cell; vertical-align: middle;">
+				<div class="div_20160110">
+					<img src="img/horse.jpg" class="" alt="原图" title="原图" />
+					<img src="img/horse.jpg" class="sepia " alt="Speia滤镜" title="Speia滤镜" />
+					<img src="img/horse.jpg" class="grayscale " alt="灰度图滤镜" title="灰度图滤镜" />
+					<img src="img/horse.jpg" class="blur " alt="高斯模糊滤镜" title="高斯模糊滤镜" />
+					<img src="img/horse.jpg" class="invert " alt="反色滤镜" title="反色滤镜" />
+					<img src="img/horse.jpg" class="saturate " alt="饱和度滤镜" title="饱和度滤镜" />
+					<img src="img/horse.jpg" class="contrast " alt="对比度滤镜" title="对比度滤镜" />
+					<img src="img/horse.jpg" class="brightness " alt="亮度滤镜" title="亮度滤镜" />
+					<img src="img/horse.jpg" class="hue-rotate " alt="色相旋转滤镜" title="色相旋转滤镜" />
+					<img src="img/horse.jpg" class="drop-shadow " alt="阴影滤镜" title="阴影滤镜" />
+					<img src="img/horse.jpg" class="green" />
+					<img src="img/horse.jpg" class="red" />
+					<img src="img/horse.jpg" class="orange" />
+					<img src="img/horse.jpg" class="one" />
+					<img src="img/horse.jpg" class="two" />
+					<img src="img/horse.jpg" class="three" />
+				</div>
+			</div>
+		</div>
 	</body>
+
 </html>
